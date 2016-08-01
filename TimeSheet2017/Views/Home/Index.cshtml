@@ -1,0 +1,69 @@
+﻿@{
+    ViewBag.Title = "TimeSheet 2017";
+}
+<br />
+<br />
+<div class="jumbotron">
+    <!--customize-->
+    <img class="img-responsive" src="~/Content/ts_banner.gif" alt="Double hourglass image">
+    <div class="row">
+        <div class="col-md-4">
+            <!--customize-->
+        </div>
+        <div class="col-md-8">
+            <!--customize-->
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <!-- changes the big button depending on if the user is logged in or not-->
+        @if (!User.Identity.IsAuthenticated)
+        {
+            <a style="width: 100%; height: 90px;" href="~/Account/Login" class="btn btn-primary btn-lg">
+                <br />Click here to begin &raquo;
+            </a>
+        }
+        else
+        {
+            if (User.Identity.Name.ToString() == "Manager@Timesheet2017.com")
+            {
+                <br />
+                <a style="width: 100%; height: 90px;" href="#" class="btn btn-primary btn-lg">
+                    <br />Click here to Report &raquo;
+                </a>
+                <br />
+                <br />
+                <a style="width: 100%; height: 90px;" href="#" class="btn btn-primary btn-lg">
+                    <br />Click here to Manage &raquo;
+                </a>
+
+
+            }
+            else
+            {
+                <a style="width: 100%; height: 90px;" href="~/TimeLogs/Create" class="btn btn-primary btn-lg">
+                    <br />Click here to enter your hours &raquo;
+                </a>
+            
+            <br/>
+            <br/>
+            
+                <a style="width: 100%; height: 90px;" href="~/TimeLogs/AssociateView" class="btn btn-primary btn-lg">
+                    <br />Click here to view your time sheet &raquo;
+                </a>
+            }
+
+
+        }
+
+        <br />
+        <br />
+
+    </div>
+    <div class="col-md-1">
+        <!--fill-->
+    </div>
+
+</div>
+
