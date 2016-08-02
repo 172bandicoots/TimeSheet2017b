@@ -14,7 +14,7 @@
     <![endif] -->
 
 
-    
+
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -35,20 +35,15 @@
                     {
                           <li>@Html.ActionLink("My Time Sheet", "AssociateView", "TimeLogs")</li>
                     }
-                    <!-- A WAY TO HIDE MENUS WITHOUT ROLES BUT NOT SECURE-->
-                    <!-- In this example, the user can skip directly to the editable screens if he knows the direct names and addresses of pages-->
-                    @* @{ string test = User.Identity.Name;} *@
                     @if (User.Identity.IsAuthenticated && User.Identity.Name.ToString() == "Manager@Timesheet2017.com")
                     {
                         <li>@Html.ActionLink("Clients", "Index", "Clients")</li>
                         <li>@Html.ActionLink("Master Log", "Index", "TimeLogs")</li>
-                        <li>@Html.ActionLink("Reporting", "", "")</li>
-                        <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+                        <li>@Html.ActionLink("Reporting", "Reporting", "TimeLogs")</li>
+                        <li>@Html.ActionLink("Register User", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
                     }
                 </ul>
-
                 @Html.Partial("_LoginPartial")
-
             </div>
         </div>
     </div>
@@ -59,7 +54,6 @@
             <p>&copy; @DateTime.Now.Year - 172bandicoots</p>
         </footer>
     </div>
-
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)

@@ -10,7 +10,7 @@ using TimeSheet2017.Models;
 
 namespace TimeSheet2017.Controllers
 {
-    [Authorize]
+    [Authorize(Users = "Manager@Timesheet2017.com")] // only manager super user can see client info
     public class ClientsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

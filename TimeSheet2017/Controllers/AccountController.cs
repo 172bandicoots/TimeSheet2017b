@@ -93,7 +93,7 @@ namespace TimeSheet2017.Controllers
 
         //
         // GET: /Account/VerifyCode
-        [AllowAnonymous]
+        [Authorize(Users = "Manager@Timesheet2017.com")] // only manager super user can see everything
         public async Task<ActionResult> VerifyCode(string provider, string returnUrl, bool rememberMe)
         {
             // Require that the user has already logged in via username/password or external login
@@ -136,7 +136,7 @@ namespace TimeSheet2017.Controllers
 
         //
         // GET: /Account/Register
-        [AllowAnonymous]
+        [Authorize(Users = "Manager@Timesheet2017.com")] // only manager super user can register
         public ActionResult Register()
         {
             return View();
@@ -145,7 +145,7 @@ namespace TimeSheet2017.Controllers
         //
         // POST: /Account/Register
         [HttpPost]
-        [AllowAnonymous]
+        [Authorize(Users = "Manager@Timesheet2017.com")]  // only manager super user can register
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
@@ -174,7 +174,7 @@ namespace TimeSheet2017.Controllers
 
         //
         // GET: /Account/ConfirmEmail
-        [AllowAnonymous]
+        [Authorize(Users = "Manager@Timesheet2017.com")] // only manager super user can see everything
         public async Task<ActionResult> ConfirmEmail(string userId, string code)
         {
             if (userId == null || code == null)
@@ -187,7 +187,7 @@ namespace TimeSheet2017.Controllers
 
         //
         // GET: /Account/ForgotPassword
-        [AllowAnonymous]
+        [Authorize(Users = "Manager@Timesheet2017.com")] // only manager super user can see everything
         public ActionResult ForgotPassword()
         {
             return View();
@@ -223,7 +223,7 @@ namespace TimeSheet2017.Controllers
 
         //
         // GET: /Account/ForgotPasswordConfirmation
-        [AllowAnonymous]
+        [Authorize(Users = "Manager@Timesheet2017.com")] // only manager super user can see everything
         public ActionResult ForgotPasswordConfirmation()
         {
             return View();
@@ -231,7 +231,7 @@ namespace TimeSheet2017.Controllers
 
         //
         // GET: /Account/ResetPassword
-        [AllowAnonymous]
+        [Authorize(Users = "Manager@Timesheet2017.com")] // only manager super user can see everything
         public ActionResult ResetPassword(string code)
         {
             return code == null ? View("Error") : View();
@@ -265,7 +265,7 @@ namespace TimeSheet2017.Controllers
 
         //
         // GET: /Account/ResetPasswordConfirmation
-        [AllowAnonymous]
+        [Authorize]
         public ActionResult ResetPasswordConfirmation()
         {
             return View();
@@ -284,7 +284,7 @@ namespace TimeSheet2017.Controllers
 
         //
         // GET: /Account/SendCode
-        [AllowAnonymous]
+        [Authorize(Users = "Manager@Timesheet2017.com")] // only manager super user can see everything
         public async Task<ActionResult> SendCode(string returnUrl, bool rememberMe)
         {
             var userId = await SignInManager.GetVerifiedUserIdAsync();
@@ -319,7 +319,7 @@ namespace TimeSheet2017.Controllers
 
         //
         // GET: /Account/ExternalLoginCallback
-        [AllowAnonymous]
+        [Authorize(Users = "Manager@Timesheet2017.com")] // only manager super user can see everything
         public async Task<ActionResult> ExternalLoginCallback(string returnUrl)
         {
             var loginInfo = await AuthenticationManager.GetExternalLoginInfoAsync();

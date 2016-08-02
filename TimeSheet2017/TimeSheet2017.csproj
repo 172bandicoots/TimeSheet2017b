@@ -223,6 +223,18 @@
     <Compile Include="Migrations\201607311503173_AddAuthorizationToTables.Designer.cs">
       <DependentUpon>201607311503173_AddAuthorizationToTables.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201608010212252_added_associate_name.cs" />
+    <Compile Include="Migrations\201608010212252_added_associate_name.Designer.cs">
+      <DependentUpon>201608010212252_added_associate_name.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201608011304047_added_seed_for_super_user.cs" />
+    <Compile Include="Migrations\201608011304047_added_seed_for_super_user.Designer.cs">
+      <DependentUpon>201608011304047_added_seed_for_super_user.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201608011310370_added_seed_for_super_user2.cs" />
+    <Compile Include="Migrations\201608011310370_added_seed_for_super_user2.Designer.cs">
+      <DependentUpon>201608011310370_added_seed_for_super_user2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Client.cs" />
@@ -237,9 +249,12 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\hg-logo-sm.png" />
+    <Content Include="Content\old_bootstrap.css" />
+    <Content Include="Content\old_bootstrap.min.css" />
     <Content Include="Content\favicon.ico" />
     <Content Include="Content\favicon.png" />
-    <Content Include="Content\hg-logo-sm.png" />
+    <Content Include="Content\hg-logo-sm-mobile.png" />
     <Content Include="Content\people.jpg" />
     <Content Include="Content\ts_banner.gif" />
     <Content Include="favicon.ico" />
@@ -310,6 +325,7 @@
     <Content Include="Views\TimeLogs\Edit.cshtml" />
     <Content Include="Views\TimeLogs\Index.cshtml" />
     <Content Include="Views\TimeLogs\AssociateView.cshtml" />
+    <Content Include="Views\TimeLogs\Reporting.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -358,6 +374,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201607311503173_AddAuthorizationToTables.resx">
       <DependentUpon>201607311503173_AddAuthorizationToTables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608010212252_added_associate_name.resx">
+      <DependentUpon>201608010212252_added_associate_name.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608011304047_added_seed_for_super_user.resx">
+      <DependentUpon>201608011304047_added_seed_for_super_user.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608011310370_added_seed_for_super_user2.resx">
+      <DependentUpon>201608011310370_added_seed_for_super_user2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

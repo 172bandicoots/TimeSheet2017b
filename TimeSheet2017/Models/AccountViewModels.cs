@@ -65,6 +65,10 @@ namespace TimeSheet2017.Models
     public class RegisterViewModel
     {
         [Required]
+        [Display(Name = "Associate Name")]
+        public string AssociateName { get; set; }
+
+        [Required]
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }

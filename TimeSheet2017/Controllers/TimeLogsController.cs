@@ -15,6 +15,16 @@ namespace TimeSheet2017.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
+
+        //Reporting
+
+        public ActionResult Reporting()
+        {
+            var timeLogs = db.TimeLogs.Include(t => t.Clients);
+            return View(timeLogs.ToList());
+        }
+
+
         //Associate View
 
         public ActionResult AssociateView()
@@ -24,6 +34,7 @@ namespace TimeSheet2017.Controllers
         }
 
         // GET: TimeLogs
+        [Authorize(Users = "Manager@Timesheet2017.com")] // only manager super user can see everything
         public ActionResult Index()
         {
             var timeLogs = db.TimeLogs.Include(t => t.Clients);
@@ -44,7 +55,7 @@ namespace TimeSheet2017.Controllers
             }
             return View(timeLog);
         }
-
+        
         // GET: TimeLogs/Create
         public ActionResult Create()
         {

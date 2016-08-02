@@ -52,6 +52,7 @@ namespace TimeSheet2017.Controllers
 
         //
         // GET: /Manage/Index
+        [Authorize]
         public async Task<ActionResult> Index(ManageMessageId? message)
         {
             ViewBag.StatusMessage =
@@ -101,6 +102,7 @@ namespace TimeSheet2017.Controllers
 
         //
         // GET: /Manage/AddPhoneNumber
+        [Authorize(Users = "Manager@Timesheet2017.com")] // only manager super user can see everything
         public ActionResult AddPhoneNumber()
         {
             return View();
@@ -162,6 +164,7 @@ namespace TimeSheet2017.Controllers
 
         //
         // GET: /Manage/VerifyPhoneNumber
+        [Authorize(Users = "Manager@Timesheet2017.com")] // only manager super user can see everything
         public async Task<ActionResult> VerifyPhoneNumber(string phoneNumber)
         {
             var code = await UserManager.GenerateChangePhoneNumberTokenAsync(User.Identity.GetUserId(), phoneNumber);
@@ -196,6 +199,7 @@ namespace TimeSheet2017.Controllers
 
         //
         // GET: /Manage/RemovePhoneNumber
+        [Authorize(Users = "Manager@Timesheet2017.com")] // only manager super user can see everything
         public async Task<ActionResult> RemovePhoneNumber()
         {
             var result = await UserManager.SetPhoneNumberAsync(User.Identity.GetUserId(), null);
@@ -213,6 +217,7 @@ namespace TimeSheet2017.Controllers
 
         //
         // GET: /Manage/ChangePassword
+        [Authorize]
         public ActionResult ChangePassword()
         {
             return View();
@@ -220,6 +225,7 @@ namespace TimeSheet2017.Controllers
 
         //
         // POST: /Manage/ChangePassword
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> ChangePassword(ChangePasswordViewModel model)
@@ -276,6 +282,7 @@ namespace TimeSheet2017.Controllers
 
         //
         // GET: /Manage/ManageLogins
+        
         public async Task<ActionResult> ManageLogins(ManageMessageId? message)
         {
             ViewBag.StatusMessage =
