@@ -1,7 +1,10 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -14,7 +17,6 @@ namespace TimeSheet2017.Controllers
     public class TimeLogsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-
 
         //Reporting
 
@@ -30,15 +32,36 @@ namespace TimeSheet2017.Controllers
         public ActionResult AssociateView()
         {
             var timeLogs = db.TimeLogs.Include(t => t.Clients);
+
+            ////////////////////////////////////
+            var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+            var currentUser = manager.FindById(User.Identity.GetUserId());
+            ViewBag.AssociateName = currentUser.AssociateName;
+            //////////////////////////////////
             return View(timeLogs.ToList());
         }
 
         // GET: TimeLogs
-        [Authorize(Users = "Manager@Timesheet2017.com")] // only manager super user can see everything
+       // [Authorize(Users = "Manager@Timesheet2017.com")] // only manager super user can see everything
         public ActionResult Index()
         {
             var timeLogs = db.TimeLogs.Include(t => t.Clients);
-            return View(timeLogs.ToList());
+
+            //////////////////////////////////////////////////////////
+            ///Redirect to control security - Only super user is allowed to see the master time log screen
+            if (User.Identity.Name == "Manager@Timesheet2017.com")
+            {
+                 return View(timeLogs.ToList());
+            }
+            else
+            {
+                return RedirectToAction("AssociateView");
+            }
+            ////////////////////////////////////////////////////////
+
+
+
+           
         }
 
         // GET: TimeLogs/Details/5
@@ -57,10 +80,19 @@ namespace TimeSheet2017.Controllers
         }
         
         // GET: TimeLogs/Create
+        [Authorize]
         public ActionResult Create()
         {
+             ///////////////////////////////////////////////
             ViewBag.ClientID = new SelectList(db.Clients, "ClientID", "CompanyName");
-            return View();
+            
+            var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+            var currentUser = manager.FindById(User.Identity.GetUserId());
+            ViewBag.AssociateName = currentUser.AssociateName;
+
+           //////////////////////////////////////////////
+      
+                return View();
         }
 
         // POST: TimeLogs/Create
@@ -72,10 +104,20 @@ namespace TimeSheet2017.Controllers
         {
             if (ModelState.IsValid)
             {
+
                 db.TimeLogs.Add(timeLog);
-                
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                //////////////////////////////////////////////////////////
+                ///Redirect to control security - Only super user is allowed to see the master time log screen
+                if (User.Identity.Name == "Manager@Timesheet2017.com")
+                {
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    return RedirectToAction("AssociateView");
+                }
+                ////////////////////////////////////////////////////////
             }
 
             ViewBag.ClientID = new SelectList(db.Clients, "ClientID", "CompanyName", timeLog.ClientID);
@@ -109,7 +151,18 @@ namespace TimeSheet2017.Controllers
             {
                 db.Entry(timeLog).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                //////////////////////////////////////////////////////////
+                ///Redirect to control security - Only super user is allowed to see the master time log screen
+                if (User.Identity.Name == "Manager@Timesheet2017.com")
+                {
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    return RedirectToAction("AssociateView");
+                }
+                ////////////////////////////////////////////////////////
+                //return RedirectToAction("Index");
             }
             ViewBag.ClientID = new SelectList(db.Clients, "ClientID", "CompanyName", timeLog.ClientID);
             return View(timeLog);
@@ -138,7 +191,22 @@ namespace TimeSheet2017.Controllers
             TimeLog timeLog = db.TimeLogs.Find(id);
             db.TimeLogs.Remove(timeLog);
             db.SaveChanges();
-            return RedirectToAction("Index");
+
+            //////////////////////////////////////////////////////////
+            ///Redirect to control security - Only super user is allowed to see the master time log screen
+            if (User.Identity.Name == "Manager@Timesheet2017.com")
+            {
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return RedirectToAction("AssociateView");
+            }
+            ////////////////////////////////////////////////////////
+
+
+
+            // return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)

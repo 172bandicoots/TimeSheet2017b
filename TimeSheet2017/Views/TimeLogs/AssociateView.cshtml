@@ -1,21 +1,110 @@
-﻿
+﻿@model IEnumerable<TimeSheet2017.Models.TimeLog>
+
 @{
     ViewBag.Title = "AssociateView";
 }
+@{ 
+    //Find the work week beginning and end days based on todays date Monday through Sunday
+    DateTime input = DateTime.Today;
+    int delta = DayOfWeek.Monday - input.DayOfWeek;
+    DateTime StartDay = input.AddDays(delta-1);
+    DateTime EndDay = StartDay.AddDays(6);
+    //Format to be pretty and useful
+    var PayWeekStartDay = StartDay.ToString("d");
+    var PayWeekEndDay = EndDay.ToString("d");
+}
+<h2>My Time Sheet: </h2>
+Period: @PayWeekStartDay to @PayWeekEndDay
+<br/>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.WorkDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Clients.CompanyName)
+        </th>
 
-
-<h2>My Time Sheet</h2>
-
-<br/> 
-<h3>The user may only see his/her own records. AJAX calls will go here to demonstrate a live query the web server for the following: </h3>
-<ul>
-    <li>Only the current logged in user records</li>
-    <li>Only records within the last 10 days</li>
-
-
-</ul>
-
-
+        <th>
+            @Html.DisplayNameFor(model => model.NumberHours)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WorkType)
+        </th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        DateTime DateOfWork = item.WorkDate; // get the log entry work date
+        if (item.AssociateName == ViewBag.AssociateName && DateOfWork >= StartDay.Date && DateOfWork <= EndDay.Date)
+        {
+            <tr style="background-color: #fcf8e4; border: thin;">
+                <td>
+                    @Html.DisplayFor(modelItem => item.WorkDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Clients.CompanyName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NumberHours)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.WorkType)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.LogID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.LogID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.LogID })
+                </td>
+            </tr>
+        }
+    }
+</table>
 <div>
-    @Html.ActionLink("Enter Hours", "Create")
+    @Html.ActionLink("Enter More Hours", "Create")
 </div>
+<br/><hr/>
+<div style="background-color: #eef7e8; border:thin;">
+    <a href="#">Type a date to review a specific pay period</a><br/><br/>
+    <input /> 
+    <br/><br/>
+</div>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.WorkDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Clients.CompanyName)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.NumberHours)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WorkType)
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        DateTime DateOfWork = item.WorkDate; // get the log entry work date
+        if (item.AssociateName == ViewBag.AssociateName)
+        {
+            <tr style="background-color: #fafafe; border: thin;">
+                <td>
+                    @Html.DisplayFor(modelItem => item.WorkDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Clients.CompanyName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NumberHours)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.WorkType)
+                </td>
+            </tr>
+        }
+    }
+</table>
