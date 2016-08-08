@@ -11,6 +11,7 @@ namespace TimeSheet2017.Models
     {
 
         [Key]
+        [Display(Name ="Client")]
         public int ClientID { get; set; }
 
         [Required, StringLength(50), Display(Name = "Client Name")]

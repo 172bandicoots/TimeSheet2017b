@@ -7,6 +7,11 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
+    <script src="~/Scripts/jquery-1.10.2.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js" type="text/javascript"></script>
+
+
+
     <!-- add the custom timesheet icon  -->
     <link rel="icon" type="image/png" href="~/Content/favicon.png" />
     <!--[if IE]>
@@ -33,7 +38,7 @@
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     @if (User.Identity.IsAuthenticated && User.Identity.Name.ToString() != "Manager@Timesheet2017.com")
                     {
-                          <li>@Html.ActionLink("My Time Sheet", "AssociateView", "TimeLogs")</li>
+                        <li>@Html.ActionLink("My Time Sheet", "AssociateView", "TimeLogs")</li>
                     }
                     @if (User.Identity.IsAuthenticated && User.Identity.Name.ToString() == "Manager@Timesheet2017.com")
                     {
@@ -41,9 +46,10 @@
                         <li>@Html.ActionLink("Master Log", "Index", "TimeLogs")</li>
                         <li>@Html.ActionLink("Reporting", "Reporting", "TimeLogs")</li>
                         <li>@Html.ActionLink("Register User", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+                        <li>@Html.ActionLink("Manage", "Manager", "TimeLogs")</li>
                     }
                 </ul>
-                @Html.Partial("_LoginPartial")
+            @Html.Partial("_LoginPartial")
             </div>
         </div>
     </div>
@@ -59,4 +65,26 @@
     @RenderSection("scripts", required: false)
 </body>
 
+<!-- Modal under construction-->
+
+
+
+
+
 </html>
+
+
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog" style="position: absolute; border: 2px solid #ccc; background-color: #f3f3f3;">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-body">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <img src="~/Content/favicon.png" style="float: left;" />
+                <h3 class="modal-title">  TimeSheet2017</h3>
+                <img src="~/Content/Page-Under-Construction-Small.png" style="height: 70%; width: 70%;" />
+                <h4>Sorry.  This feature is still under construction.</h4>
+            </div>
+        </div>
+    </div>
+</div>

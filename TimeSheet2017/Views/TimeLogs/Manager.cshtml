@@ -1,0 +1,64 @@
+﻿@model TimeSheet2017.Models.TimeLog
+@{
+    ViewBag.Title = "Manager";
+}
+<h2>@ViewBag.Title.</h2>
+<h3>@ViewBag.Message</h3>
+<h3>
+    Dashboard
+</h3>
+<a class="toggle" href="#" style="font-weight:bold;"><li>Associate Quick View</li></a>
+<div id="functionGroup">
+    <ul>
+        <li style="background-color:aliceblue;">
+            Enter Associate's full name to narrow log entry search<br />
+            <input type="text" id="txtSearch" />
+            <form>
+                <input type="radio" id="r1" name="TF1" value="CurrentPayPeriod">Current Pay Period
+                <input type="radio" id="r2" name="TF1" value="All" checked>All
+            </form>
+            <br />
+            <div id="UpdatePanel1"></div>
+            <div id="Totals" style="font-weight: 400; background: yellow; font-size: 20px;"></div>
+        </li>
+    </ul>
+</div>
+<a class="toggle" href="#" style="font-weight:bold;"><li>Client Quick View</li></a>
+<div id="functionGroup">
+    <ul>
+        <li style="background-color:aliceblue;">
+            Enter Client Name to search log entires by Client<br />
+            <input type="text" id="txtSearch2" />
+            <form>
+                <input type="radio" id="r1" name="TF1" value="CurrentPayPeriod">Current Pay Period
+                <input type="radio" id="r2" name="TF1" value="All" checked>All
+            </form>
+            <br />
+            <div id="UpdatePanel2"></div>
+        </li>
+    </ul>
+</div>
+<a class="toggle" href="#" style="font-weight:bold;"><li>Accounts</li></a>
+<div id="functionGroup">
+    <ul>
+        <li id="vun">View User Names</li>
+        <li id="eui">Edit User Information</li>
+        <li id="du">Delete User (Excludes Super User Manager Account) <br /></li>
+    </ul>
+</div>
+<a class="toggle" href="#" style="font-weight:bold;"><li>Configuration Settings</li></a>
+<div id="functionGroup">
+    <ul>
+        <li id="cpp">Change Pay Period Interval</li>
+        <li id="awtl">Alter Work Type Lists<br /></li>
+    </ul>
+</div>
+<a class="toggle" href="#" style="font-weight:bold;"><li id="bd">Backup Data</li></a>
+
+<script src="~/Scripts/Managertools.js"></script>
+
+
+
+
+
+

@@ -3,19 +3,22 @@
 @{
     ViewBag.Title = "AssociateView";
 }
-@{ 
+@{
     //Find the work week beginning and end days based on todays date Monday through Sunday
     DateTime input = DateTime.Today;
     int delta = DayOfWeek.Monday - input.DayOfWeek;
-    DateTime StartDay = input.AddDays(delta-1);
+    DateTime StartDay = input.AddDays(delta - 1);
     DateTime EndDay = StartDay.AddDays(6);
     //Format to be pretty and useful
     var PayWeekStartDay = StartDay.ToString("d");
     var PayWeekEndDay = EndDay.ToString("d");
+
+
+
 }
 <h2>My Time Sheet: </h2>
-Period: @PayWeekStartDay to @PayWeekEndDay
-<br/>
+Period: @PayWeekStartDay to @PayWeekEndDay  - Hours must be turned in prior to midnight on the final day of the pay period.
+<br />
 <table class="table">
     <tr>
         <th>
@@ -60,14 +63,15 @@ Period: @PayWeekStartDay to @PayWeekEndDay
         }
     }
 </table>
-<div>
-    @Html.ActionLink("Enter More Hours", "Create")
+<div style="background-color: #fcf8e4; border:thin;">
+    @Html.ActionLink("Enter Hours Here", "Create")
+    <br /><br />
 </div>
-<br/><hr/>
-<div style="background-color: #eef7e8; border:thin;">
-    <a href="#">Type a date to review a specific pay period</a><br/><br/>
-    <input /> 
-    <br/><br/>
+<br /> <br />
+<hr />
+<div style="background-color: #fafafe; border:thin;">
+    <a hrerf="#">Submitted hours from previous pay periods</a>
+    <br />
 </div>
 
 <table class="table">
@@ -89,7 +93,7 @@ Period: @PayWeekStartDay to @PayWeekEndDay
     @foreach (var item in Model)
     {
         DateTime DateOfWork = item.WorkDate; // get the log entry work date
-        if (item.AssociateName == ViewBag.AssociateName)
+        if (item.AssociateName == ViewBag.AssociateName && DateOfWork < StartDay.Date)
         {
             <tr style="background-color: #fafafe; border: thin;">
                 <td>
@@ -108,3 +112,8 @@ Period: @PayWeekStartDay to @PayWeekEndDay
         }
     }
 </table>
+
+<div>
+        @Html.ActionLink("Enter Hours", "Create")
+
+</div>

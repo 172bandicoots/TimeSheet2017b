@@ -17,13 +17,49 @@ namespace TimeSheet2017.Controllers
     public class TimeLogsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
+        //Manager Screen
+        
+        public ActionResult Manager()
+        {
+            var timeLogs = db.TimeLogs.Include(t => t.Clients);
+            //////////////////////////////////////////////////////////
+            ///Redirect to control security - Only super user is allowed to see the master time log screen
+            if (User.Identity.Name == "Manager@Timesheet2017.com")
+            {
+                //return View(timeLogs.ToList());
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("AssociateView");
+            }
+            ////////////////////////////////////////////////////////
+
+           // return View(timeLogs.ToList());
+        }
+
+
 
         //Reporting
 
         public ActionResult Reporting()
         {
             var timeLogs = db.TimeLogs.Include(t => t.Clients);
-            return View(timeLogs.ToList());
+            //////////////////////////////////////////////////////////
+            ///Redirect to control security - Only super user is allowed to see the master time log screen
+            if (User.Identity.Name == "Manager@Timesheet2017.com")
+            {
+                return View(timeLogs.ToList());
+            }
+            else
+            {
+                return RedirectToAction("AssociateView");
+
+            }
+            ////////////////////////////////////////////////////////
+
+
+            //return View(timeLogs.ToList());
         }
 
 
@@ -46,22 +82,18 @@ namespace TimeSheet2017.Controllers
         public ActionResult Index()
         {
             var timeLogs = db.TimeLogs.Include(t => t.Clients);
-
             //////////////////////////////////////////////////////////
-            ///Redirect to control security - Only super user is allowed to see the master time log screen
+            ///Redirect to control security - Only super user is allowed to 
+            /// see the master time log screen
             if (User.Identity.Name == "Manager@Timesheet2017.com")
             {
                  return View(timeLogs.ToList());
             }
             else
             {
-                return RedirectToAction("AssociateView");
+                return RedirectToAction("AssociateView");// show special associate few of log entires
             }
             ////////////////////////////////////////////////////////
-
-
-
-           
         }
 
         // GET: TimeLogs/Details/5
@@ -127,6 +159,12 @@ namespace TimeSheet2017.Controllers
         // GET: TimeLogs/Edit/5
         public ActionResult Edit(int? id)
         {
+            ////////////////////////////////////
+            var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+            var currentUser = manager.FindById(User.Identity.GetUserId());
+            ViewBag.AssociateName = currentUser.AssociateName;
+
+            //////////////////////////////////
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -217,5 +255,44 @@ namespace TimeSheet2017.Controllers
             }
             base.Dispose(disposing);
         }
+
+        ////////////////////////////////////////
+        public JsonResult GetAssociateLogEntries(string prefix)
+        {
+            //create list object called theData
+            List<TimeLog> theData = new List<TimeLog>();
+
+            //get all records where AssociateName matches prefix parameter
+            using (ApplicationDbContext dc = new ApplicationDbContext())
+            {
+                theData = dc.TimeLogs.Where(a => a.AssociateName.Contains(prefix)).ToList();
+            }
+  
+            //would have probably been better to not store dates as DateTime type... should be strings.
+
+            //return the data to the calling json request
+            return new JsonResult { Data = theData, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+        }
+        //////////////////////////////////////////
+
+        ////////////////////////////////////////
+        public JsonResult Getclients(string prefix)
+        {
+            //create list object called theData
+            List<TimeLog> theData = new List<TimeLog>();
+
+            //get all records where AssociateName matches prefix parameter
+            using (ApplicationDbContext dc = new ApplicationDbContext())
+            {
+                theData = dc.TimeLogs.Where(a => a.AssociateName.Contains(prefix)).ToList();
+            }
+
+            //would have probably been better to not store dates as DateTime type... should be strings.
+
+            //return the data to the calling json request
+            return new JsonResult { Data = theData, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+        }
+        //////////////////////////////////////////
+
     }
 }

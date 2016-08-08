@@ -15,6 +15,7 @@ namespace TimeSheet2017.Models
         public int LogID { get; set; }
 
         //Must stamp date every time a record is created
+        [Display(Name ="Time Stamp")]
         public DateTime TimeStamp { get; set; }
 
         [Required, Display(Name = "Associate")]
@@ -37,7 +38,7 @@ namespace TimeSheet2017.Models
         public String WorkType { get; set; }
 
         //A description of work performed
-        [Required, Display(Name = "Work Notes")]
+        [Display(Name = "Work Notes")]
         public String JobNote { get; set; }
     }
 }

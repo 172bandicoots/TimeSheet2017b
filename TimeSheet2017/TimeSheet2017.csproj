@@ -44,6 +44,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="GemBox.Spreadsheet, Version=39.3.30.1171, Culture=neutral, PublicKeyToken=b1b72c69714d4847, processorArchitecture=MSIL">
+      <HintPath>..\packages\GemBox.Spreadsheet.39.3.30.1171\lib\net30\GemBox.Spreadsheet.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
@@ -162,6 +166,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppCode\DateIs.cs" />
+    <Compile Include="AppCode\logicGates.cs" />
+    <Compile Include="AppCode\Report.cs" />
+    <Compile Include="AppCode\UserManagement.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
@@ -235,6 +243,26 @@
     <Compile Include="Migrations\201608011310370_added_seed_for_super_user2.Designer.cs">
       <DependentUpon>201608011310370_added_seed_for_super_user2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201608150036290_new.cs" />
+    <Compile Include="Migrations\201608150036290_new.Designer.cs">
+      <DependentUpon>201608150036290_new.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201608150044031_new2.cs" />
+    <Compile Include="Migrations\201608150044031_new2.Designer.cs">
+      <DependentUpon>201608150044031_new2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201608150045058_new3.cs" />
+    <Compile Include="Migrations\201608150045058_new3.Designer.cs">
+      <DependentUpon>201608150045058_new3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201608150357307_newpub.cs" />
+    <Compile Include="Migrations\201608150357307_newpub.Designer.cs">
+      <DependentUpon>201608150357307_newpub.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201608150358029_newpub2.cs" />
+    <Compile Include="Migrations\201608150358029_newpub2.Designer.cs">
+      <DependentUpon>201608150358029_newpub2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Client.cs" />
@@ -255,6 +283,7 @@
     <Content Include="Content\favicon.ico" />
     <Content Include="Content\favicon.png" />
     <Content Include="Content\hg-logo-sm-mobile.png" />
+    <Content Include="Content\Page-Under-Construction-Small.png" />
     <Content Include="Content\people.jpg" />
     <Content Include="Content\ts_banner.gif" />
     <Content Include="favicon.ico" />
@@ -277,6 +306,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\Managertools.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
@@ -327,9 +357,11 @@
     <Content Include="Views\TimeLogs\Index.cshtml" />
     <Content Include="Views\TimeLogs\AssociateView.cshtml" />
     <Content Include="Views\TimeLogs\Reporting.cshtml" />
+    <Content Include="Views\TimeLogs\Manager.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Reports\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -384,6 +416,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201608011310370_added_seed_for_super_user2.resx">
       <DependentUpon>201608011310370_added_seed_for_super_user2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608150036290_new.resx">
+      <DependentUpon>201608150036290_new.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608150044031_new2.resx">
+      <DependentUpon>201608150044031_new2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608150045058_new3.resx">
+      <DependentUpon>201608150045058_new3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608150357307_newpub.resx">
+      <DependentUpon>201608150357307_newpub.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608150358029_newpub2.resx">
+      <DependentUpon>201608150358029_newpub2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

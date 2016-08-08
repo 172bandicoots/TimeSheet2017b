@@ -5,11 +5,47 @@
 <h2>@ViewBag.Title.</h2>
 <h3>@ViewBag.Message</h3>
 
-Options for reports will go here.
+<h3>
+    Planned Microsoft Excell Reports
+</h3>
+
+@using TimeSheet2017.AppCode;
+@{Report test = new Report();
+    test.genExcel();
+
+}
 
 
 
-<h1>TEST</h1>
+<ul>
+    <li id="test">Test Gem Excell</li>
+    <li id="ahtd">Associate hour totals detail for period</li>
+    <li id="ythpe">Ytd total hours per employee</li>
+    <li id="cbhpc">Current billing hours per client</li>
+    <li id="ashbph">Analytics showing hours billed per hospital and type of work performed</liid="ashbph">
+</ul>
+<script>
+    $(document).ready(function () {
+
+
+
+        ///temp modal messages - remove once implemented
+        $("#ahtd").click(function () {
+            $('#myModal').modal('show');
+        });
+        $("#ythpe").click(function () {
+            $('#myModal').modal('show');
+        });
+        $("#cbhpc").click(function () {
+            $('#myModal').modal('show');
+        });
+        $("#ashbph").click(function () {
+            $('#myModal').modal('show');
+        });
+
+    });
+    ////////
+</script>
 
 
 
