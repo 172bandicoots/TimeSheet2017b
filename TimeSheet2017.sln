@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeSheet2017", "TimeSheet2017\TimeSheet2017.csproj", "{D6F105C3-77D6-4FEC-8896-01F8B98FB680}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestProject", "UnitTestProject\UnitTestProject.csproj", "{B5E439C5-BED4-4AFB-A934-DCF85E3595EB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D6F105C3-77D6-4FEC-8896-01F8B98FB680}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D6F105C3-77D6-4FEC-8896-01F8B98FB680}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D6F105C3-77D6-4FEC-8896-01F8B98FB680}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D6F105C3-77D6-4FEC-8896-01F8B98FB680}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B5E439C5-BED4-4AFB-A934-DCF85E3595EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5E439C5-BED4-4AFB-A934-DCF85E3595EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5E439C5-BED4-4AFB-A934-DCF85E3595EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5E439C5-BED4-4AFB-A934-DCF85E3595EB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
