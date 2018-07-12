@@ -1,0 +1,20 @@
+﻿1>------ Build started: Project: TimeSheet2017, Configuration: Release Any CPU ------
+1>  TimeSheet2017 -> C:\Users\user\Source\Repos\TimeSheet2017\TimeSheet2017\TimeSheet2017\bin\TimeSheet2017.dll
+2>------ Publish started: Project: TimeSheet2017, Configuration: Release Any CPU ------
+2>Transformed Web.config using C:\Users\user\Source\Repos\TimeSheet2017\TimeSheet2017\TimeSheet2017\Web.Release.config into obj\Release\TransformWebConfig\transformed\Web.config.
+2>Auto ConnectionString Transformed Views\Web.config into obj\Release\CSAutoParameterize\transformed\Views\Web.config.
+2>Auto ConnectionString Transformed obj\Release\TransformWebConfig\transformed\Web.config into obj\Release\CSAutoParameterize\transformed\Web.config.
+2>Copying all files to temporary location below for package/publish:
+2>obj\Release\Package\PackageTmp.
+2>Start Web Deploy Publish the Application/package to https://timesheet2017.scm.azurewebsites.net/msdeploy.axd?site=TimeSheet2017 ...
+2>Adding ACL's for path (TimeSheet2017)
+2>Adding ACL's for path (TimeSheet2017)
+2>Updating file (TimeSheet2017\bin\TimeSheet2017.dll).
+2>Updating file (TimeSheet2017\Views\Web.config).
+2>Updating file (TimeSheet2017\Web.config).
+2>Adding ACL's for path (TimeSheet2017)
+2>Adding ACL's for path (TimeSheet2017)
+2>Publish Succeeded.
+2>Web App was published successfully http://timesheet2017.azurewebsites.net/
+========== Build: 1 succeeded, 0 failed, 0 up-to-date, 0 skipped ==========
+========== Publish: 1 succeeded, 0 failed, 0 skipped ==========
