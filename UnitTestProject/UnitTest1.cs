@@ -30,7 +30,7 @@ namespace UnitTestProject
         public void T2_inCurrentPayPeriod_Not_Valid_Date()
         {
             /***************************************************************************************
-            The target method must accept a string argument and returns a boolean false if the 
+            The target method must accept a string argument and returns a boolean false if the   
             string does not resolve to a date.  Although information is validated before going into
             the database, this should handle corrupt inputs. 
             ****************************************************************************************/
